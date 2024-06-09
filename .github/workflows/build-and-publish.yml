@@ -1,0 +1,61 @@
+name: Build and push image
+
+on:
+  schedule:
+    # Weekly, at 03:00 on Monday UTC
+    - cron: "0 3 * * 1"
+  pull_request:
+    paths:
+      - ".github/workflows/build-and-publish.yml"
+      - ".dockerignore"
+      - "Dockerfile"
+      - "go.mod"
+      - "go.sum"
+      - "smtp-gotify.go"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/build-and-publish.yml"
+      - ".dockerignore"
+      - "Dockerfile"
+      - "go.mod"
+      - "go.sum"
+      - "smtp-gotify.go"
+  workflow_dispatch:
+
+env:
+  REGISTRY: quay.io
+  OWNER: reiml
+
+jobs:
+  build-and-push:
+    name: Build and push Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.OWNER }}/smtp-gotify:latest
+            ${{ env.REGISTRY }}/${{ env.OWNER }}/smtp-gotify:${{ github.sha }}
+          build-args: |
+            SG_VERSION=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
