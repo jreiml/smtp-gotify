@@ -5,7 +5,8 @@
 
 `smtp-gotify` is a small program which listens for SMTP and sends
 all incoming Email messages to your Gotify server. It is an updated and maintained version of 
-[scott-8/smtp-gotify](https://github.com/scott-8/smtp-gotify).
+[scott-8/smtp-gotify](https://github.com/scott-8/smtp-gotify). 
+The image is rebuilt every week and published to [quay.io](https://quay.io/repository/reiml/smtp-gotify).
 
 Say you have a software which can send Email notifications via SMTP.
 You may use `smtp-gotify` as an SMTP server so
