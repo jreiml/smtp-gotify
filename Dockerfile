@@ -1,4 +1,4 @@
-FROM golang:1.13-alpine3.10 AS builder
+FROM golang:1.22-alpine3.20 AS builder
 
 RUN apk add --no-cache git ca-certificates
 
@@ -15,11 +15,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build \
         -ldflags "-s -w" \
         -a -o smtp-gotify
 
-
-
-
-
-FROM alpine:3.10
+FROM alpine:3.20
 
 RUN apk add --no-cache ca-certificates
 
