@@ -2,6 +2,7 @@
 
 [![MIT Licensed](https://img.shields.io/github/license/jreiml/smtp-gotify)](https://github.com/jreiml/smtp-gotify/blob/main/LICENSE)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/smtp-gotify)](https://artifacthub.io/packages/search?repo=smtp-gotify)
+[![Quay.io](https://img.shields.io/badge/Docker-Quay.io-blue)](https://quay.io/repository/reiml/smtp-gotify)
 
 `smtp-gotify` is a small program which listens for SMTP and sends
 all incoming Email messages to your Gotify server. It is an updated and maintained version of 
