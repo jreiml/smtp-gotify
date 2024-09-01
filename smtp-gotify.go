@@ -177,6 +177,8 @@ func SendEmailToGotify(e *mail.Envelope,
 		gotifyConfig.titleTemplate, gotifyConfig.messageTemplate)
 
 	for _, appToken := range strings.Split(gotifyConfig.gotifyAPIToken, ",") {
+		// Ensure the Gotify URL ends with a trailing slash
+		gotifyURL := strings.TrimRight(gotifyConfig.gotifyURL, "/") + "/"
 
 		// Apparently the native golang's http client supports
 		// http, https and socks5 proxies via HTTP_PROXY/HTTPS_PROXY env vars
@@ -186,7 +188,7 @@ func SendEmailToGotify(e *mail.Envelope,
 		resp, err := http.PostForm(
 			fmt.Sprintf(
 				"%smessage?token=%s",
-				gotifyConfig.gotifyURL,
+				gotifyURL,
 				appToken,
 			),
 			url.Values{
