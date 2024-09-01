@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine3.20 AS builder
+FROM golang:1.23-alpine3.20 AS builder
 
 RUN apk add --no-cache git ca-certificates
 
@@ -23,7 +23,7 @@ COPY --from=builder /app/smtp-gotify /smtp-gotify
 
 USER daemon
 
-ENV SG_SMTP_LISTEN "0.0.0.0:2525"
+ENV SG_SMTP_LISTEN="0.0.0.0:2525"
 EXPOSE 2525
 
 ENTRYPOINT ["/smtp-gotify"]
