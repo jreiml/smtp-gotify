@@ -1,7 +1,6 @@
 module github.com/jreiml/smtp-gotify
 
 go 1.23
-
 require (
 	github.com/flashmob/go-guerrilla v1.6.1
 	github.com/jhillyerd/enmime v1.3.0
@@ -23,7 +22,7 @@ require (
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf // indirect
 	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
-	golang.org/x/net v0.28.0 // indirect
-	golang.org/x/sys v0.24.0 // indirect
-	golang.org/x/text v0.17.0 // indirect
+	golang.org/x/net v0.36.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
 )
